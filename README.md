@@ -21,4 +21,4 @@
 
 2. In the terminal of the frontend project, enter `npm start`.
 
-3. Open [localhost:4200](localhost:4200).
+3. Open [localhost:4200](https://localhost:4200).
