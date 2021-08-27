@@ -7,13 +7,7 @@
 
 2. Open the backend project on Visual Studio 2019 by clicking on the `.sln` file inside the folder.
 
-3. Download the necessary NuGet packages and client-side libraries:
- 
- - open a PowerShell terminal
- - type `command here` 
- - wait for download completion
-
-4. Open the frontend project in Visual Studio Code (you can open a terminal inside the folder and type `code .` )
-5. Open a terminal in VSCode to run Node Package Manager
-6. Type `npm install` to install all the frontend project's dependencies.
+3. Open the frontend project in Visual Studio Code (you can open a terminal inside the folder and type `code .` )
+4. Open a terminal in VSCode to run Node Package Manager
+5. Type `npm install` to install all the frontend project's dependencies.
 
