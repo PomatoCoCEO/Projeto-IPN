@@ -1,0 +1,39 @@
+<div
+  class="container center"
+  style="
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 5px 5px;
+    margin-top: 2%;
+    border-radius: 5px;
+  "
+>
+  <div class="row">
+    <div class="col-md-9">
+      <h1>{{ project.title }}</h1>
+      <p>{{ project.description }}</p>
+      <h3>Tasks:</h3>
+      <task-list [tasks]="project.tasks" edit="false"></task-list>
+    </div>
+    <div class="col-md-3">
+      <h2>Manager</h2>
+      <a
+        [routerLink]="['/user', project.manager.username]"
+        class="link-custom"
+        >{{ project.manager.username }}</a
+      >
+      <img src="{{ project.manager.photoFilePath }}" class="side-photo" />
+      <div
+        *ngIf="
+          project.manager.phoneNumber != undefined &&
+          project.manager.phoneNumber != ''
+        "
+      >
+        <p>Phone Number: {{ project.manager.phoneNumber }}</p>
+      </div>
+      <div *ngIf="project.manager.email != ''">
+        <p>Email: {{ project.manager.email }}</p>
+      </div>
+      <back-button></back-button>
+    </div>
+  </div>
+</div>

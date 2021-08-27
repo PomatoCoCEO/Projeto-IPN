@@ -1,0 +1,10 @@
+<div>
+  <!--{{ task | json }}-->
+  <i class="fa fa-check" *ngIf="task.finished" style="color: green"></i>
+  <span *ngIf="!task.finished && !hasPassed(task.deadline)">
+    <i class="fa fa-minus" style="color: orange"></i>
+  </span>
+  <span *ngIf="!task.finished && hasPassed(task.deadline)">
+    <i class="fa fa-close" style="color: red"></i>
+  </span>
+</div>

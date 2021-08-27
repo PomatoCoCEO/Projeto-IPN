@@ -1,0 +1,15 @@
+@font-face {
+  font-family: "Causten";
+  src: url("Causten Round/Causten-Regular.otf");
+}
+
+@font-face {
+  font-family: "Causten";
+  src: url("Causten Round/Causten-ExtraBold.otf");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "Causten Black";
+  src: url("Causten Round/Causten-Black.otf");
+}

@@ -1,0 +1,93 @@
+<div
+  class="container"
+  style="background-color: rgba(255, 255, 255, 0.7); padding: 5px 5px"
+>
+  <h1>Project Editor</h1>
+  <div class="text text-danger" *ngIf="errorMessage != ''">
+    {{ errorMessage }}
+  </div>
+  <form (submit)="saveProject()">
+    <div class="form-entry">
+      <label for="title">Project Title: </label>
+      <input
+        type="text"
+        [(ngModel)]="projectAdder.project.title"
+        name="project-title"
+        #projectTitle="ngModel"
+        style="width: 100%"
+        required
+      />
+      <div
+        class="text-danger"
+        *ngIf="
+          projectTitle.errors &&
+          projectTitle.touched &&
+          projectTitle.invalid &&
+          projectTitle.errors.required
+        "
+      >
+        Required
+      </div>
+    </div>
+    <div class="form-entry">
+      <label for="description">Project Description: </label>
+      <input
+        [(ngModel)]="projectAdder.project.description"
+        type="textarea"
+        name="project-description"
+        #projectDescription="ngModel"
+        style="width: 100%; height: auto"
+        required
+      />
+      <div
+        class="text-danger"
+        *ngIf="
+          projectDescription.errors &&
+          projectDescription.touched &&
+          projectDescription.invalid &&
+          projectDescription.errors.required
+        "
+      >
+        Required
+      </div>
+    </div>
+    <div class="form-entry">
+      <label for="budget">Budget(in €): </label>
+      <input
+        type="text"
+        [(ngModel)]="projectAdder.project.budget"
+        name="project-budget"
+        pattern="^[0-9]*(\.[0-9]+){0,1}"
+        #budget="ngModel"
+      />
+      <div *ngIf="budget.invalid" class="text text-danger">
+        Insert a valid number with a dot as decimal separator.
+      </div>
+    </div>
+    <br />
+    <task-list
+      [tasks]="projectAdder.project.tasks"
+      edit="true"
+      (taskDeleter)="onTaskDeleting($event)"
+      (taskEditor)="onTaskEditing($event)"
+    ></task-list>
+    <!--<table style="width: 100%">
+      <tr
+        class="link-custom"
+        style="width: 100%; text-align: center; background-color=rgba(255,255,255,0.8)"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+        (click)="prepareAdd()"
+      >
+        <i class="fa fa-plus icon-custom-desc"></i
+        >Add New Task
+      </tr>
+    </table> -->
+
+    <edit-task (taskEmmiter)="onTaskSaving()"></edit-task>
+    <!--this should summon a pop-up window to add a task-->
+    <button type="submit" [disabled]="budget.invalid">Save Project</button>
+    <back-button></back-button>
+    <!-- {{ projectAdder.project | json }} -->
+  </form>
+</div>

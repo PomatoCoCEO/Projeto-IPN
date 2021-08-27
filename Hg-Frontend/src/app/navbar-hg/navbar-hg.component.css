@@ -1,0 +1,12 @@
+.nav-photo {
+  max-height: 10px;
+  max-width: 30px;
+}
+
+.inline-display {
+  display: inline-block !important;
+}
+
+@media(min-width:768px) {
+
+}

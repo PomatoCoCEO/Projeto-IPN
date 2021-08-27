@@ -1,0 +1,144 @@
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="false"
+>
+  <div class="modal-dialog">
+    <form (submit)="onSubmit()" id="new-task-form">
+      <div
+        class="modal-content"
+        style="background-color: rgba(255, 255, 255, 0.8)"
+      >
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Task Editor</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="title">Title: </label>
+              <input
+                type="text"
+                name="title"
+                [(ngModel)]="projectAdder.taskToEdit.title"
+              />
+            </div>
+            <div class="form-group">
+              <label for="description">Description: </label>
+              <input
+                type="text"
+                name="description"
+                [(ngModel)]="projectAdder.taskToEdit.description"
+              />
+            </div>
+            <div class="form-group">
+              Deadline:
+              <date-input
+                (dateEmitter)="onDeadlineChange($event)"
+                hourIncluded="true"
+                [pastInvalid]="true"
+                [date]="
+                  projectAdder.taskToEdit.id == 0
+                    ? undefined
+                    : projectAdder.taskToEdit.deadline
+                "
+              ></date-input>
+            </div>
+
+            <div class="form-group">
+              <label for="programmer-username">Programmer: </label>
+              <select
+                class="form-select"
+                [(ngModel)]="projectAdder.taskToEdit.programmer.username"
+                name="birthDay"
+                #day="ngModel"
+              >
+                <option *ngFor="let p of projectAdder.programmers" [value]="p">
+                  {{ p }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button data-bs-dismiss="modal" type="button">Dismiss</button>
+          <button type="submit" form="new-task-form" data-bs-dismiss="modal">
+            Save Task
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<!--
+  <button
+    type="button"
+    style="text-align: center; cursor: pointer"
+    data-bs-toggle="modal"
+    data-bs-target="#new-task-modal"
+    style="width: 100%"
+  >
+    Add New Task
+  </button>
+  <div class="modal fade" aria-hidden="true" tabindex="-1" id="new-task-model">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">New Task</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <form (submit)="taskEmmiter.emit(task)" name="new-task-form">
+          <div class="modal-body">
+            <div>
+              <label for="title">Title: </label>
+              <input type="text" name="title" [(ngModel)]="task.title" />
+            </div>
+            <div>
+              <label for="description">Description: </label>
+              <input
+                type="text"
+                name="description"
+                [(ngModel)]="task.description"
+              />
+            </div>
+            <div>
+              <label for="deadline">Deadline: </label>
+              <input type="text" name="deadline" />
+            </div>
+            <div>
+              <label for="programmer-username">Programmer Username: </label>
+              <input
+                type="text"
+                [(ngModel)]="programmerUsername"
+                name="username"
+              />
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button data-bs-dismiss="modal">Dismiss</button>
+            we could put sth here to erase the data if the user clicks 'dismiss'
+            <button
+              type="submit"
+              for="new-type-form"
+              data-bs-toggle="modal"
+              data-bs-target="#new-task-modal"
+            >
+              Add Task
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div> -->

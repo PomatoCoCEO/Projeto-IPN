@@ -1,0 +1,53 @@
+<div
+  class="container card"
+  style="background-color: rgba(255, 255, 255, 0.7); padding: 1%; margin: 2%"
+>
+  <div style="width: 300px">
+    <img src="{{ user.info.photoFilePath }}" class="profile-photo" />
+  </div>
+
+  <h2>{{ user.info.username }}</h2>
+  <input
+    type="button"
+    routerLink="/user/edit"
+    *ngIf="str == http.userDetails.username"
+    style="width: auto"
+    value="Edit Profile"
+  />
+  <p *ngIf="user.info.biography != null && user.info.biography != 'null'">
+    {{ user.info.biography }}
+  </p>
+  <!--roles-->
+  <p>{{ roleString() }}</p>
+  <div
+    *ngIf="user.info.phoneNumber != undefined && user.info.phoneNumber != ''"
+  >
+    <p>Phone Number: {{ user.info.phoneNumber }}</p>
+  </div>
+  <div *ngIf="user.info.email != ''">
+    <p>Email: {{ user.info.email }}</p>
+  </div>
+  <div *ngIf="user.info.roleNames.includes('Manager')">
+    <p>Projects: {{ user.managerStats.noProjects }}</p>
+    <p>Budget Sum: {{ user.managerStats.budgetSum | currency }}</p>
+  </div>
+  <div *ngIf="user.info.roleNames.includes('Programmer')">
+    <p>Tasks Assigned: {{ user.programmerStats.tasksAssigned }}</p>
+    <p>
+      Tasks Completed:
+      <no-tasks
+        [no]="user.programmerStats.tasksCompleted"
+        [success]="true"
+      ></no-tasks>
+    </p>
+    <p>
+      Tasks Failed:
+      <no-tasks
+        [no]="user.programmerStats.tasksFailed"
+        [success]="false"
+      ></no-tasks>
+    </p>
+  </div>
+  <back-button></back-button>
+  <!--{{ user | json }} -->
+</div>

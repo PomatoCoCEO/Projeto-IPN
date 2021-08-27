@@ -1,0 +1,79 @@
+<div class="row list-card">
+  <div class="col-md-4" *ngFor="let i of g.indexArray(projects.length)">
+    <!--<p>{{ p | json }}</p>-->
+    <div class="card list-card-item">
+      <div class="row">
+        <div class="col-md-6">Project:</div>
+        <div class="col-md-6">{{ projects[i].title }}</div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">Manager:</div>
+        <div class="col-md-6">{{ projects[i].manager.username }}</div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">Budget:</div>
+        <div class="col-md-6">{{ projects[i].budget | currency }}</div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">Total Tasks:</div>
+        <div class="col-md-6">{{ projects[i].tasks.length }}</div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">Tasks Finished:</div>
+        <div class="col-md-6">
+          <no-tasks [no]="noTasksFinished(projects[i])" [success]="true"></no-tasks>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">Tasks Failed:</div>
+        <div class="col-md-6">
+          <no-tasks [no]="noTasksFailed(projects[i])" [success]="false"></no-tasks>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <button
+            [routerLink]="['/project', projects[i].id]"
+            style="width: 100%"
+          >
+            <i class="fa fa-search icon-custom-desc"></i>
+            Details
+          </button>
+        </div>
+        <!-- has to be corrected-->
+        <div class="col-md-4">
+          <button (click)="editProject(i)" style="width: 100%">
+            <i class="fa fa-pencil icon-custom-desc"></i>Edit
+          </button>
+        </div>
+
+        <div class="col-md-4">
+          <button (click)="deleteProject(i)" style="width: 100%">
+            <i class="fa fa-trash icon-custom-desc"></i>Delete
+          </button>
+        </div>
+
+        <!-- delete missing-->
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4" [routerLink]="['/project/new']">
+    <div class="card list-card card-button">
+      <table
+        style="
+          text-align: center;
+          width: 100%;
+          height: 100%;
+          min-height: 150px;
+          display: table;
+        "
+      >
+        <tr style="display: table-cell; vertical-align: middle">
+          <i class="fa fa-plus"></i>
+          <br />
+          Add New Project
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

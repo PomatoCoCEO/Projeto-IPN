@@ -1,0 +1,172 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~font-awesome/css/font-awesome.css";
+@import "assets/Fonts/fonts.css";
+
+:root {
+  /*defining color variables and such*/
+  --color-button: #c0c0c0;
+  --background: rgba(255, 255, 255, 0.6);
+  --link-color-normal: #707070;
+  --link-color-hover: #505050;
+  --button-color-normal: #c0c0c0;
+  --button-color-hover: #909090;
+}
+
+body {
+  background-image: url("assets/img/background-images/bg_image_v2.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  font-family: "Causten";
+}
+
+body .navbar-custom {
+  background-color: #bababa;
+  margin: 0;
+  padding: 0;
+  color: #505050;
+}
+
+.card {
+  background-color: var(--background);
+}
+
+.link-custom-nav {
+  color: var(--link-color-normal);
+  margin-left: 10%;
+  cursor: pointer;
+}
+
+.link-custom-nav:hover {
+  color: var(--link-color-hover);
+}
+
+.link-custom {
+  color: var(--link-color-normal);
+  margin-left: 1%;
+  cursor: pointer;
+}
+
+.link-custom:hover {
+  color: var(--link-color-hover);
+}
+
+.form-group input {
+  margin-left: 2%;
+  width: 96%;
+}
+
+.form-group div {
+  margin-left: 2%;
+  width: 96%;
+}
+
+.form-group input[type="checkbox"] {
+  margin-left: 2%;
+  width: auto;
+}
+
+.form-group label {
+  margin-left: 2%;
+  margin-top: 2%;
+  width: 96%;
+}
+
+form > input[type="submit"],
+p {
+  margin-left: 2%;
+}
+
+.date-select {
+  margin-left: 2%;
+  width: auto;
+  margin-right: 2%;
+  display: inline;
+}
+
+.date-select-label {
+  display: inline;
+}
+
+.div-date-select {
+  display: inline;
+}
+
+.signup-limits {
+  margin-bottom: 2%;
+  margin-left: 2%;
+  margin-top: 2%;
+  margin-right: 2%;
+}
+
+.table-photo {
+  max-height: 40px;
+  max-width: 500px;
+  margin-right: 5px;
+}
+
+.profile-photo {
+  display: flex;
+  height: auto;
+  width: 100%;
+  object-fit: contain;
+  margin: 2%;
+}
+
+.side-photo {
+  max-width: 90%;
+}
+
+.list-card {
+  width: 96%;
+  margin: 2%;
+  height: 96%;
+}
+
+.list-card-item {
+  width: 96%;
+  margin: 2%;
+  padding: 0% 2%;
+  height: 96%;
+}
+
+.card-button {
+  color: var(--link-color-normal);
+  cursor: pointer;
+}
+
+.card-button:hover {
+  color: var(--link-color-hover);
+}
+
+.icon-custom-desc {
+  padding-right: 5px;
+  padding-left: 0px;
+}
+
+input {
+  border: none;
+  border-radius: 5px;
+}
+
+input[type="button"],
+input[type="submit"],
+button {
+  background-color: var(--button-color-normal);
+  border: none;
+  border-radius: 5px;
+  padding: 2px;
+  margin: 5px;
+}
+
+input[type="button"]:hover:enabled,
+input[type="submit"]:hover:enabled,
+button:hover {
+  background-color: var(--button-color-hover);
+}
+
+.navbar-photo {
+  max-width: 30px;
+  height: auto;
+}

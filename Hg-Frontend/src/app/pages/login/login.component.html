@@ -1,0 +1,51 @@
+<div class="row" style="margin-top: 10%">
+  <div class="col-md-4 offset-4">
+    <div *ngIf="errorMessage" class="alert alert-danger">
+      {{ errorMessage }}
+    </div>
+    <div class="card">
+      <form (submit)="onLogin()">
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <br />
+          <input
+            #username="ngModel"
+            [(ngModel)]="login.username"
+            name="username"
+            required
+          />
+          <br />
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <br />
+          <input
+            type="password"
+            [(ngModel)]="login.password"
+            #password="ngModel"
+            name="password"
+            required
+          />
+          <br />
+        </div>
+        <div class="form-group">
+          <label style="display: inline">Remember Me?</label>
+          <input
+            type="checkbox"
+            style="margin-left: 5px"
+            [(ngModel)]="login.rememberMe"
+            name="rememberMe"
+          />
+          <!--Por que raio é que é preciso o nome?! -->
+          <br />
+        </div>
+        <input type="submit" value="Login" />
+        <p>
+          Don't have an account?<a class="link-custom" routerLink="/signup"
+            >Sign Up</a
+          >
+        </p>
+      </form>
+    </div>
+  </div>
+</div>

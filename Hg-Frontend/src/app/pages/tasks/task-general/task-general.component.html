@@ -1,0 +1,45 @@
+<div class="row list-card">
+  <div class="col-md-6 offset-md-3" *ngIf="tasks.length == 0">
+    <div class="card" style="font-size: 20pt">
+      Whoops! It appears there isn't any task assigned to you! Wait until some
+      manager includes you in a project!
+    </div>
+  </div>
+  <div class="col-md-3" *ngFor="let t of tasks">
+    <div class="card list-card-item">
+      <div class="row">
+        <div class="col-md-5">Project:</div>
+        <div class="col-md-7">{{ t.project!.title }}</div>
+      </div>
+      <div class="row">
+        <div class="col-md-5">Task:</div>
+        <div class="col-md-7">{{ t.title }}</div>
+      </div>
+      <div class="row">
+        <div class="col-md-5">Deadline:</div>
+        <div class="col-md-7">{{ t.deadline | date: "short":"pt":"pt" }}</div>
+      </div>
+      <div class="row">
+        <div class="col-md-5">Finished:</div>
+        <div class="col-md-7">
+          <task-state [task]="t"></task-state>
+          <span *ngIf="!t.finished && hasPassed(t.deadline)">
+            <p>Deadline has passed</p>
+          </span>
+        </div>
+      </div>
+      <span
+        *ngIf="!t.finished && !hasPassed(t.deadline)"
+        class="col-md-7 offset-md-5"
+      >
+        <button (click)="setFinished(t.id)">Mark as finished</button>
+        <br />
+      </span>
+      <button [routerLink]="['/project', t.project!.id]" style="width: 100%">
+        View Project Details
+      </button>
+
+      <!-- {{ t | json }} -->
+    </div>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+{
+	"Token": {
+		"Key": "asdf.asoriuvmqwp0o,tsgjvasçopdgjjerb-",
+		"Issuer": "http://localhost:8888",
+		"Audience": "http://localhost:8888"
+	},
+	"ConnectionStrings": {
+		"HgManagerDb": "Data Source=.;Initial Catalog=HgManagerDb;Integrated Security=True;Connect Timeout=30;MultipleActiveResultSets=true"
+	}
+}

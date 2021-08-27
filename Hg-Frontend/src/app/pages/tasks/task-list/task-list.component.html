@@ -1,0 +1,73 @@
+<table
+  class="table table-striped table-hover"
+  style="background-color: rgba(255, 255, 255, 0.8); padding: 5px"
+>
+  <thead>
+    <tr>
+      <th scope="col">Programmer</th>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Deadline</th>
+      <th scope="col"><div *ngIf="edit == 'false'">Finished</div></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let i of indexArray(tasks.length)">
+      <td>
+        <img
+          *ngIf="edit == 'false'"
+          src="{{ tasks[i].programmer.photoFilePath }}"
+          class="table-photo"
+        />
+        <a
+          [routerLink]="['/user', tasks[i].programmer.username]"
+          class="link-custom"
+          >{{ tasks[i].programmer.username }}</a
+        >
+      </td>
+      <td>
+        {{ tasks[i].title }}
+      </td>
+      <td>
+        {{ tasks[i].description }}
+      </td>
+      <td>
+        {{ tasks[i].deadline | date: "short":"pt":"pt" }}
+      </td>
+      <td *ngIf="edit == 'true'">
+        <button
+          (click)="onDelete(i)"
+          type="button"
+          style="min-width: 20px; margin: 5px"
+        >
+          <i class="fa fa-trash"></i>
+        </button>
+        <button
+          (click)="onEdit(i)"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+          type="button"
+          style="min-width: 20px; margin: 5px"
+        >
+          <i class="fa fa-pencil"></i>
+        </button>
+      </td>
+      <td *ngIf="edit == 'false'">
+        <task-state [task]="tasks[i]"></task-state>
+      </td>
+    </tr>
+    <tr *ngIf="edit == 'true'">
+      <td colspan="4">
+        <div
+          class="link-custom"
+          style="width: 100%; text-align: center"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+          (click)="onEdit(-1)"
+        >
+          <i class="fa fa-plus icon-custom-desc"></i>Add New Task
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

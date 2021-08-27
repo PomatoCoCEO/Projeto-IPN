@@ -1,0 +1,83 @@
+<div class="container card" style="padding: 1%">
+  <div class="card-header">Edit user details</div>
+  <form (submit)="onSubmit($event)">
+    <div style="width: 300px; margin: 5px">
+      <img [src]="http.userDetails.photoFilePath" />
+      <input
+        id="photoFileUpdate"
+        type="file"
+        placeholder="Change Profile Photo"
+        [(ngModel)]="photoFile"
+      />
+    </div>
+    <div class="form-group">
+      <label for="username">Username: </label>
+      <!--no edition possible here, yet ;)-->
+      <input
+        type="text"
+        name="username"
+        [placeholder]="user.username"
+        disabled
+      />
+    </div>
+    <div class="form-group">
+      <label for="currPassword"
+        >Current Password: (enter if you want to change your password)</label
+      >
+      <input type="password" name="currPassword" [(ngModel)]="currPassword" />
+      <div
+        class="text-danger"
+        *ngIf="currPassword.length > 0 && user.password.length > 0"
+      >
+        Required
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password">New Password: </label>
+      <input
+        type="password"
+        name="password"
+        [(ngModel)]="user.password"
+        #password="ngModel"
+      />
+      <div
+        class="text-danger"
+        *ngIf="
+          password.touched &&
+          currPassword.length > 0 &&
+          !isPasswordValid(user.password)
+        "
+      >
+        Invalid password: Must have at least 8 characters, one numeric
+        character, one capital letter, one lowercase letter and one special
+        character.
+      </div>
+      <div
+        class="text-danger"
+        *ngIf="
+          currPassword.length > 0 &&
+          password.touched &&
+          user.password.length > 0
+        "
+      >
+        Required
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="username">Email: </label>
+      <!--no edition possible here, yet ;)-->
+      <input type="text" name="email" [placeholder]="user.email" disabled />
+      <!-- Input validation missing -->
+    </div>
+    <div class="form-group">
+      <label for="biography">Biography: </label>
+      <input type="textarea" name="biography" [(ngModel)]="user.biography" />
+    </div>
+    <div class="form-group">
+      <label for="username">Phone Number: </label>
+      <input type="text" name="phoneNumber" [(ngModel)]="user.phoneNumber" />
+    </div>
+    <button>Submit Changes</button>
+  </form>
+  <back-button></back-button>
+</div>

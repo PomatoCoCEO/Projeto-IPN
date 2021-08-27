@@ -1,0 +1,183 @@
+<div>
+  <h1
+    style="text-align: center; margin-top: 1%; width=100%; background-color:rgba(255,255,255,0.7)"
+  >
+    <!--Requires colour correction-->
+    Let's sign you up in Mercury...
+  </h1>
+  <form
+    (submit)="onSignup($event)"
+    id="signupForm"
+    class="row"
+    style="margin-top: 5%"
+  >
+    <div class="col-md-4 offset-2">
+      <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
+      <div class="card">
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <br />
+          <input
+            #username="ngModel"
+            [(ngModel)]="signup.username"
+            name="username"
+            required
+          />
+
+          <div
+            class="text-danger"
+            *ngIf="
+              username.errors &&
+              username.touched &&
+              username.invalid &&
+              username.errors.required
+            "
+          >
+            Required
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <br />
+          <input
+            type="password"
+            #password="ngModel"
+            [(ngModel)]="signup.password"
+            name="password"
+            pattern="[a-z]|[A-Z]|"
+            required
+          />
+          <br />
+          <div
+            class="text-danger"
+            *ngIf="
+              password.errors &&
+              password.touched &&
+              password.invalid &&
+              password.errors.required
+            "
+          >
+            Required
+          </div>
+          <div
+            class="text-danger"
+            *ngIf="
+              password.touched &&
+              signup.password.length > 0 &&
+              !isPasswordValid(signup.password)
+            "
+          >
+            Invalid password: Must have at least 8 characters, one numeric
+            character, one capital letter, one lowercase letter and one
+            special character.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <br />
+          <input
+            type="text"
+            [(ngModel)]="signup.email"
+            #email="ngModel"
+            name="email"
+            required
+            pattern="[a-zA-Z\._\-0-9]+@[a-zA-Z\._\-0-9]+\.[a-zA-Z\._\-0-9]+"
+          />
+          <br />
+          <div class="text text-danger" *ngIf="email.touched && email.invalid">
+            Invalid email
+          </div>
+        </div>
+
+        <div
+          class="form-group"
+          [(ngModel)]="signup.roleNames"
+          name="roles"
+          #roles="ngModel"
+        >
+          <label for="roles">Roles:</label>
+          <br />
+          <div
+            *ngFor="let r of ['Programmer', 'Manager']"
+            style="display: inline"
+          >
+            <label style="display: inline">{{ r }}</label>
+            <input
+              type="checkbox"
+              name="{{ r }}"
+              (change)="updateRole(r)"
+              [checked]="signup.roleNames.includes(r)"
+            />
+          </div>
+          <!-- <div
+            class="text text-danger"
+            *ngIf="roles.touched && signup.roleNames.length == 0"
+          >
+            Choose at least one role
+          </div> -->
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <date-input
+          (dateEmitter)="onDateChange($event)"
+          hourIncluded="false"
+          [pastInvalid]="false"
+        ></date-input>
+
+        <div class="form-group">
+          <label for="phone-number">Phone Number:</label>
+          <br />
+          <input
+            [(ngModel)]="signup.phoneNumber"
+            name="phoneNumber"
+            maxlength="20"
+          />
+          <br />
+        </div>
+
+        <div class="form-group">
+          <label for="biography">Short Biography:</label>
+          <br />
+          <input
+            type="textarea"
+            [(ngModel)]="signup.biography"
+            name="biography"
+          />
+          <br />
+        </div>
+
+        <div class="form-group" *ngIf="!username.invalid && !password.invalid">
+          <label for="photo">Profile Photo:</label>
+          <br />
+          <input
+            id="photoFileSignup"
+            type="file"
+            name="photo"
+            [(ngModel)]="photoFile"
+            name="photoFile"
+          />
+          <br />
+        </div>
+
+        <input
+          type="submit"
+          value="Signup"
+          class="signup-limits"
+          [disabled]="
+            username.invalid ||
+            password.invalid ||
+            !isPasswordValid(signup.password) ||
+            !hasPassed(signup.birthDate) ||
+            signup.roleNames.length == 0
+          "
+        />
+
+        <!--{{ signup | json }}-->
+      </div>
+    </div>
+  </form>
+</div>

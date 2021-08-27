@@ -1,0 +1,85 @@
+<form (change)="onSubmit()">
+  <div class="form-group" class="signup-limits">
+    <div class="div-date-select">
+      <label class="date-select-label">Day</label>
+      <select
+        class="form-select date-select"
+        [(ngModel)]="dateAid.day"
+        name="birthDay"
+        #day="ngModel"
+      >
+        <option *ngFor="let i of valArray(31, 1)" [value]="i">{{ i }}</option>
+      </select>
+    </div>
+
+    <div class="div-date-select">
+      <label class="date-select-label">Month</label>
+      <select
+        class="form-select date-select"
+        [(ngModel)]="dateAid.month"
+        name="birthMonth"
+        #month="ngModel"
+      >
+        <option *ngFor="let i of valArray(12, 1)" [value]="i">{{ i }}</option>
+      </select>
+    </div>
+
+    <div class="div-date-select">
+      <label class="date-select-label">Year: </label>
+      <select
+        class="form-select date-select"
+        [(ngModel)]="dateAid.year"
+        name="date-year"
+        #year="ngModel"
+        display="inline-block"
+      >
+        <option *ngFor="let i of years()" [value]="i">
+          {{ i }}
+        </option>
+      </select>
+    </div>
+
+    <div class="div-date-select" *ngIf="hourIncluded == 'true'">
+      <label class="date-select-label">HH:MM:SS</label>
+      <select
+        class="form-select date-select"
+        [(ngModel)]="dateAid.hours"
+        name="date-hours"
+        selected="0"
+      >
+        <option *ngFor="let i of valArray(24, 0)" [value]="i">{{ i }}</option>
+      </select>
+      :
+      <select
+        class="form-select date-select"
+        [(ngModel)]="dateAid.minutes"
+        name="date-minutes"
+        selected="0"
+      >
+        <option *ngFor="let i of valArray(60, 0)" [value]="i">{{ i }}</option>
+      </select>
+      :
+      <select
+        class="form-select date-select"
+        [(ngModel)]="dateAid.seconds"
+        name="date-seconds"
+        selected="0"
+      >
+        <option *ngFor="let i of valArray(60, 0)" [value]="i">{{ i }}</option>
+      </select>
+    </div>
+
+    <div
+      class="text text-danger"
+      *ngIf="
+        year.touched &&
+        month.touched &&
+        day.touched &&
+        isDateValid(dateAid.day, dateAid.month, dateAid.year) &&
+        hasPassed(dateAid) == pastInvalid
+      "
+    >
+      Invalid date
+    </div>
+  </div>
+</form>
